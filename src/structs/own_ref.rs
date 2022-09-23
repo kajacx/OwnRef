@@ -9,9 +9,9 @@ pub struct OwnRef<'a, T: ?Sized> {
 }
 
 impl<'a, T: ?Sized> OwnRef<'a, T> {
-    pub unsafe fn new(pointer: NonNull<T>) -> Self {
+    pub unsafe fn new<'b>(reference: &'b mut T, _phantom_reference: &'a ()) -> Self {
         Self {
-            pointer,
+            pointer: NonNull::new_unchecked(reference as *mut T),
             _phantom_lifetime: PhantomData,
             _phantom_value: PhantomData,
         }
