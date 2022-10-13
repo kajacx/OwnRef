@@ -1,4 +1,3 @@
-#[cfg(test)]
 use crate::structs::own_ref::OwnRef;
 
 #[test]

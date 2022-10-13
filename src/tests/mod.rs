@@ -1,2 +1,2 @@
-//mod works_as_intended;
+mod macro_tests;
 mod non_macro_test;

@@ -1,9 +1,10 @@
-#[macro_use(crate::macros::new_own_ref::new_own_ref)]
 use crate::macros::new_own_ref::new_own_ref;
 
 #[test]
 fn creating_new_own_ref_should_compile() {
-    let mut text: String = "Hello".to_string();
+    let mut text: String = "Hello".to_owned();
 
-    // let own_ref = new_own_ref!(text);
+    new_own_ref!(own_ref, text);
+
+    assert_eq!(own_ref.get(), "Hello");
 }
