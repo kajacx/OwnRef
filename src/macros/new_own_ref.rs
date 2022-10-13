@@ -9,7 +9,8 @@ macro_rules! new_own_ref {
         unsafe {
             crate::structs::own_ref::OwnRef::new(
                 &mut $variable,
-                &__own_ref_phantom_lifetime_marker,
+                //&__own_ref_phantom_lifetime_marker,
+                todo!(),
             );
         }
     };

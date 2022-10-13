@@ -1,3 +1,3 @@
-mod macros;
-mod structs;
+pub mod macros;
+pub mod structs;
 mod tests;
