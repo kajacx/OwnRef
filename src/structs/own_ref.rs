@@ -1,5 +1,5 @@
-use std::borrow::Borrow;
 use std::marker::PhantomData;
+use std::ops::Deref;
 use std::ptr::NonNull;
 
 pub struct OwnRef<'a, T> {
@@ -9,9 +9,9 @@ pub struct OwnRef<'a, T> {
 }
 
 impl<'a, T> OwnRef<'a, T> {
-    pub unsafe fn new<'b>(reference: &'b mut T, _phantom_lifetime: &'a ()) -> Self {
+    pub unsafe fn new<'b>(reference: &'b T, _phantom_lifetime: &'a ()) -> Self {
         Self {
-            pointer: NonNull::new_unchecked(reference as *mut T),
+            pointer: NonNull::from(reference),
             _phantom_lifetime: PhantomData,
             _phantom_value: PhantomData,
         }
@@ -28,8 +28,10 @@ impl<'a, T> OwnRef<'a, T> {
     }
 }
 
-impl<'a, T> Borrow<T> for OwnRef<'a, T> {
-    fn borrow(&self) -> &T {
+impl<'a, T> Deref for OwnRef<'a, T> {
+    type Target = T;
+
+    fn deref(&self) -> &T {
         self.get()
     }
 }

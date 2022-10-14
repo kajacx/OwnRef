@@ -1,4 +1,5 @@
 #[test]
+#[ignore]
 fn should_compile() {
     let t = trybuild::TestCases::new();
     //pass("./failing_tests/good.rs");

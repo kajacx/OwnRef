@@ -35,13 +35,13 @@ impl<'a, T> OwnRefMut<'a, T> {
 impl<'a, T> Deref for OwnRefMut<'a, T> {
     type Target = T;
 
-    fn deref(&self) -> &T {
+    fn deref(&self) -> &Self::Target {
         self.get()
     }
 }
 
 impl<'a, T> DerefMut for OwnRefMut<'a, T> {
-    fn deref_mut(&mut self) -> &mut T {
+    fn deref_mut(&mut self) -> &mut Self::Target {
         self.get_mut()
     }
 }
