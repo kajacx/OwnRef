@@ -10,7 +10,7 @@ macro_rules! new_own_ref {
             // because we forget it immediately.
             // Finally, the data will not be deallocated twice,
             // because we forget it and not drop it.
-            crate::structs::own_ref::OwnRefMut::new(&mut $data_variable, &_phantom)
+            crate::structs::own_ref_mut::OwnRefMut::new(&mut $data_variable, &_phantom)
         };
         std::mem::forget($data_variable);
     };
