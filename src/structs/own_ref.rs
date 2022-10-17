@@ -31,7 +31,7 @@ impl<'a, T> OwnRef<'a, T> {
 impl<'a, T> Deref for OwnRef<'a, T> {
     type Target = T;
 
-    fn deref(&self) -> &T {
+    fn deref(&self) -> &Self::Target {
         self.get()
     }
 }
