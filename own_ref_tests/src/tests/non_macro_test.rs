@@ -1,4 +1,4 @@
-use crate::structs::own_ref::OwnRef;
+use own_ref::OwnRef;
 
 #[test]
 fn creating_new_own_ref_should_compile() {

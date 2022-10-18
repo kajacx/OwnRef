@@ -1,4 +1,4 @@
-use crate::{macros::new_own_ref::new_own_ref, structs::own_ref_mut::OwnRefMut};
+use own_ref::{new_own_ref, OwnRefMut};
 
 #[test]
 fn creating_new_own_ref_should_compile() {

@@ -9,3 +9,4 @@ edition = "2021"
 
 [dev-dependencies]
 trybuild = "1.0.71"
+own_ref = { path = "../own_ref" }
