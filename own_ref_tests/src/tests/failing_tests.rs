@@ -5,4 +5,5 @@ fn should_compile() {
 
     test.compile_fail("src/tests/failing_tests/immutable_own_ref.rs");
     test.compile_fail("src/tests/failing_tests/immutable_variable.rs");
+    test.compile_fail("src/tests/failing_tests/outlive_lifetime.rs");
 }
