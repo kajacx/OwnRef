@@ -1,2 +1,2 @@
 #!/usr/bin/bash
-cargo build
+cd own_ref && cargo build
