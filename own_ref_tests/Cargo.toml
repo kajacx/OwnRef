@@ -1,12 +1,11 @@
 [package]
-name = "own_ref"
+name = "own_ref_tests"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
-# [lib]
-# proc-macro = true
-
 [dependencies]
 
+[dev-dependencies]
+trybuild = "1.0.71"
