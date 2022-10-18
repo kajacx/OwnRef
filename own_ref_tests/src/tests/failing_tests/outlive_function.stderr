@@ -1,5 +1,5 @@
 error[E0515]: cannot return value referencing local variable `_phantom`
-  --> src/tests/failing_tests/outlive_lifetime.rs:14:5
+  --> src/tests/failing_tests/outlive_function.rs:14:5
    |
 12 |     new_own_ref!(as_own_ref, owned);
    |     ------------------------------- `_phantom` is borrowed here
