@@ -1,3 +1,5 @@
-#[macro_use]
-pub mod macros;
-pub mod structs;
+mod macros;
+mod structs;
+
+pub use structs::OwnRef;
+pub use structs::OwnRefMut;

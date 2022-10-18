@@ -24,10 +24,10 @@ macro_rules! new_own_ref {
             // because we forget it immediately.
             // Finally, the data will not be deallocated twice,
             // because we forget it and not drop it.
-            own_ref::structs::own_ref::OwnRef::new(&$data_variable, &_phantom)
+            own_recd own_ref && f::structs::own_ref::OwnRef::new(&$data_variable, &_phantom)
         };
         std::mem::forget($data_variable);
     };
 }
 
-pub(crate) use new_own_ref;
+// pub(crate) use new_own_ref; TODO: remove for good?
