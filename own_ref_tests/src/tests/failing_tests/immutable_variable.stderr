@@ -1,5 +1,5 @@
 error[E0596]: cannot borrow `text` as mutable, as it is not declared as mutable
- --> src/tests/failing_tests/missused_of_mut.rs:6:5
+ --> src/tests/failing_tests/immutable_variable.rs:6:5
   |
 4 |     let text = "Hello".to_string();
   |         ---- help: consider changing this to be mutable: `mut text`

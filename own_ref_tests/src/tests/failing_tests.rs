@@ -1,9 +1,8 @@
 #[test]
 #[ignore]
 fn should_compile() {
-    let t = trybuild::TestCases::new();
-    //pass("./failing_tests/good.rs");
-    //t.pass("src/tests/failing_tests/good.rs");
-    t.compile_fail("src/tests/failing_tests/missused_of_mut.rs");
-    //t.compile_fail("./failing_tests/bad.rs");
+    let test = trybuild::TestCases::new();
+
+    test.compile_fail("src/tests/failing_tests/immutable_own_ref.rs");
+    test.compile_fail("src/tests/failing_tests/immutable_variable.rs");
 }

@@ -1,0 +1,17 @@
+warning: variable does not need to be mutable
+ --> src/tests/failing_tests/immutable_own_ref.rs:4:9
+  |
+4 |     let mut text = "Hello".to_string();
+  |         ----^^^^
+  |         |
+  |         help: remove this `mut`
+  |
+  = note: `#[warn(unused_mut)]` on by default
+
+error[E0596]: cannot borrow data in dereference of `OwnRef<'_, String>` as mutable
+ --> src/tests/failing_tests/immutable_own_ref.rs:8:5
+  |
+8 |     owned_ref.push_str(" world");
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ cannot borrow as mutable
+  |
+  = help: trait `DerefMut` is required to modify through a dereference, but it is not implemented for `OwnRef<'_, String>`
