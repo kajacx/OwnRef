@@ -5,7 +5,7 @@ fn main() {
 
     new_own_ref!(mut owned_ref, text);
 
-    owned_ref.push(" world");
+    owned_ref.push_str(" world");
 
     assert_eq!(owned_ref.as_str(), "Hello");
 }
