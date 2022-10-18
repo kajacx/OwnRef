@@ -24,3 +24,14 @@ fn should_be_able_to_mutate() {
 
     assert_eq!(result.as_str(), "Hello world");
 }
+
+/*#[test]
+fn main() {
+    let text = "Hello".to_string();
+
+    new_own_ref!(mut own_ref, text);
+
+    own_ref.push_str(" world");
+
+    assert_eq!(own_ref.as_str(), "Hello");
+}*/
