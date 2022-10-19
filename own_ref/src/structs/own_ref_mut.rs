@@ -11,7 +11,7 @@ pub struct OwnRefMut<'a, T> {
 }
 
 impl<'a, T> OwnRefMut<'a, T> {
-    pub unsafe fn new<'b>(reference: &'b mut T, _phantom_reference: &'a ()) -> Self {
+    pub unsafe fn new<'b>(reference: &'b mut T, _phantom_reference: PhantomData<&'a ()>) -> Self {
         Self {
             pointer: NonNull::new_unchecked(reference as *mut T),
             _phantom_lifetime: PhantomData,
@@ -33,13 +33,7 @@ impl<'a, T> OwnRefMut<'a, T> {
          * Returned object still has the same lifetime, so it cannot outlive the original value.
          * Lastly, we forget ourselfs, so the data at pointer is not deallocated twice.
          */
-        let result = unsafe {
-            let phantom = ();
-            let phantom = &phantom;
-            let phantom = phantom as *const ();
-            let phantom: &'a () = &*phantom;
-            OwnRef::new(self.pointer.as_ref(), phantom)
-        };
+        let result = unsafe { OwnRef::new(self.pointer.as_ref(), self._phantom_lifetime) };
         std::mem::forget(self);
         result
     }

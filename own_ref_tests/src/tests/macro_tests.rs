@@ -10,6 +10,20 @@ fn creating_new_own_ref_should_compile() {
 }
 
 #[test]
+fn can_borrow_value_in_inner_function() {
+    let text: String = "Hello".to_owned();
+
+    new_own_ref!(own_ref, text);
+
+    fn inner(arg: OwnRef<String>) {
+        let data = vec!["Pretty", arg.get()];
+        assert_eq!(data[1], "Hello")
+    }
+
+    inner(own_ref);
+}
+
+#[test]
 fn should_be_able_to_mutate() {
     let mut text = "Hello".to_string();
 
@@ -26,7 +40,7 @@ fn should_be_able_to_mutate() {
 }
 
 #[test]
-fn main() {
+fn should_convert_own_ref_mut_to_own_ref() {
     let mut text = "Hello".to_string();
 
     new_own_ref!(mut own_ref, text);
