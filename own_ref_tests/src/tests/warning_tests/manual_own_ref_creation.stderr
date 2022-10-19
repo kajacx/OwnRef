@@ -1,0 +1,15 @@
+warning: use of deprecated associated function `own_ref::OwnRef::<'a, T>::new`: Do not construct OwnRef manually, instead use the `new_own_ref` macro.
+ --> src/tests/warning_tests/manual_own_ref_creation.rs:7:38
+  |
+7 |     let owned_ref = unsafe { OwnRef::new(&text, lifetime_of(&_phantom)) };
+  |                                      ^^^
+  |
+  = note: `#[warn(deprecated)]` on by default
+
+error[E0308]: mismatched types
+  --> src/tests/warning_tests/manual_own_ref_creation.rs:13:14
+   |
+13 | fn fail() -> i32 {
+   |    ----      ^^^ expected `i32`, found `()`
+   |    |
+   |    implicitly returns `()` as its body has no tail or `return` expression
