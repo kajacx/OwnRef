@@ -2,6 +2,8 @@ use std::marker::PhantomData;
 use std::ops::{Deref, DerefMut};
 use std::ptr::NonNull;
 
+use crate::OwnRef;
+
 pub struct OwnRefMut<'a, T> {
     pointer: NonNull<T>,
     _phantom_lifetime: PhantomData<&'a ()>,
@@ -23,6 +25,23 @@ impl<'a, T> OwnRefMut<'a, T> {
 
     pub fn get_mut(&mut self) -> &mut T {
         unsafe { self.pointer.as_mut() }
+    }
+
+    pub fn into_own_ref(self) -> OwnRef<'a, T> {
+        /* SAFETY:
+         * No references to self to to self.pointer exists, because we are consuming self by value.
+         * Returned object still has the same lifetime, so it cannot outlive the original value.
+         * Lastly, we forget ourselfs, so the data at pointer is not deallocated twice.
+         */
+        let result = unsafe {
+            let phantom = ();
+            let phantom = &phantom;
+            let phantom = phantom as *const ();
+            let phantom: &'a () = &*phantom;
+            OwnRef::new(self.pointer.as_ref(), phantom)
+        };
+        std::mem::forget(self);
+        result
     }
 
     pub fn take(self) -> T {

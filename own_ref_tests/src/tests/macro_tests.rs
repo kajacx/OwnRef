@@ -1,4 +1,4 @@
-use own_ref::{new_own_ref, OwnRefMut};
+use own_ref::{new_own_ref, OwnRef, OwnRefMut};
 
 #[test]
 fn creating_new_own_ref_should_compile() {
@@ -25,13 +25,19 @@ fn should_be_able_to_mutate() {
     assert_eq!(result.as_str(), "Hello world");
 }
 
-/*#[test]
+#[test]
 fn main() {
-    let text = "Hello".to_string();
+    let mut text = "Hello".to_string();
 
     new_own_ref!(mut own_ref, text);
 
     own_ref.push_str(" world");
 
-    assert_eq!(own_ref.as_str(), "Hello");
-}*/
+    fn takes_own_ref(owned_ref: OwnRef<String>) -> String {
+        owned_ref.take()
+    }
+
+    let taken = takes_own_ref(own_ref.into_own_ref());
+
+    assert_eq!(taken, "Hello world");
+}
