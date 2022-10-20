@@ -1,10 +1,28 @@
-warning: use of deprecated associated function `own_ref::OwnRef::<'a, T>::new`: Do not construct OwnRef manually, instead use the `new_own_ref` macro.
- --> src/tests/warning_tests/manual_own_ref_creation.rs:7:38
+warning: use of deprecated function `own_ref::internals::lifetime_of`: This is a helper method for the `new_own_ref` macro and is not intended to be called directly.
+ --> src/tests/warning_tests/manual_own_ref_creation.rs:1:26
   |
-7 |     let owned_ref = unsafe { OwnRef::new(&text, lifetime_of(&_phantom)) };
-  |                                      ^^^
+1 | use own_ref::internals::{lifetime_of, new_own_ref};
+  |                          ^^^^^^^^^^^
   |
   = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated function `own_ref::internals::new_own_ref`: Do not construct OwnRef manually, instead use the `new_own_ref` macro.
+ --> src/tests/warning_tests/manual_own_ref_creation.rs:1:39
+  |
+1 | use own_ref::internals::{lifetime_of, new_own_ref};
+  |                                       ^^^^^^^^^^^
+
+warning: use of deprecated function `own_ref::internals::new_own_ref`: Do not construct OwnRef manually, instead use the `new_own_ref` macro.
+ --> src/tests/warning_tests/manual_own_ref_creation.rs:7:30
+  |
+7 |     let owned_ref = unsafe { new_own_ref(&text, lifetime_of(&_phantom)) };
+  |                              ^^^^^^^^^^^
+
+warning: use of deprecated function `own_ref::internals::lifetime_of`: This is a helper method for the `new_own_ref` macro and is not intended to be called directly.
+ --> src/tests/warning_tests/manual_own_ref_creation.rs:7:49
+  |
+7 |     let owned_ref = unsafe { new_own_ref(&text, lifetime_of(&_phantom)) };
+  |                                                 ^^^^^^^^^^^
 
 error[E0308]: mismatched types
   --> src/tests/warning_tests/manual_own_ref_creation.rs:13:14

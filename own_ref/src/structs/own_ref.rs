@@ -9,11 +9,7 @@ pub struct OwnRef<'a, T> {
 }
 
 impl<'a, T> OwnRef<'a, T> {
-    #[deprecated(
-        since = "0.1.0",
-        note = "Do not construct OwnRef manually, instead use the `new_own_ref` macro."
-    )]
-    pub unsafe fn new<'b>(reference: &'b T, _phantom_lifetime: PhantomData<&'a ()>) -> Self {
+    pub(crate) unsafe fn new<'b>(reference: &'b T, _phantom_lifetime: PhantomData<&'a ()>) -> Self {
         Self {
             pointer: NonNull::from(reference),
             _phantom_lifetime,

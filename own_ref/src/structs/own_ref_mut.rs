@@ -11,11 +11,10 @@ pub struct OwnRefMut<'a, T> {
 }
 
 impl<'a, T> OwnRefMut<'a, T> {
-    #[deprecated(
-        since = "0.1.0",
-        note = "Do not construct OwnRefMut manually, instead use the `new_own_ref` macro."
-    )]
-    pub unsafe fn new<'b>(reference: &'b mut T, _phantom_lifetime: PhantomData<&'a ()>) -> Self {
+    pub(crate) unsafe fn new<'b>(
+        reference: &'b mut T,
+        _phantom_lifetime: PhantomData<&'a ()>,
+    ) -> Self {
         Self {
             pointer: NonNull::new_unchecked(reference as *mut T),
             _phantom_lifetime,
