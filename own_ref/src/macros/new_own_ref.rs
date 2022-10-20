@@ -2,7 +2,6 @@
 macro_rules! new_own_ref {
     (mut $ref_name:ident, $data_variable:ident) => {
         let _phantom = ();
-        #[allow(deprecated)]
         let mut $ref_name = unsafe {
             // SAFETY:
             // We know the OwnRef will not outlive the current stack,
@@ -11,6 +10,7 @@ macro_rules! new_own_ref {
             // because we forget it immediately.
             // Finally, the data will not be deallocated twice,
             // because we forget it and not drop it.
+            #[allow(deprecated)]
             own_ref::internals::new_own_ref_mut(
                 &mut $data_variable,
                 own_ref::internals::lifetime_of(&_phantom),
@@ -20,7 +20,6 @@ macro_rules! new_own_ref {
     };
     ($ref_name:ident, $data_variable:ident) => {
         let _phantom = ();
-        #[allow(deprecated)]
         let $ref_name = unsafe {
             // SAFETY:
             // We know the OwnRef will not outlive the current stack,
@@ -29,6 +28,7 @@ macro_rules! new_own_ref {
             // because we forget it immediately.
             // Finally, the data will not be deallocated twice,
             // because we forget it and not drop it.
+            #[allow(deprecated)]
             own_ref::internals::new_own_ref(
                 &$data_variable,
                 own_ref::internals::lifetime_of(&_phantom),

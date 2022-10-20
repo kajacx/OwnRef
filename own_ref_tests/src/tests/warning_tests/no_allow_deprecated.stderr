@@ -1,0 +1,15 @@
+warning: use of deprecated function `deprecated`
+ --> src/tests/warning_tests/no_allow_deprecated.rs:8:5
+  |
+8 |     deprecated(); // We should still see a deprecated waring here
+  |     ^^^^^^^^^^
+  |
+  = note: `#[warn(deprecated)]` on by default
+
+error[E0308]: mismatched types
+  --> src/tests/warning_tests/no_allow_deprecated.rs:15:14
+   |
+15 | fn fail() -> i32 {
+   |    ----      ^^^ expected `i32`, found `()`
+   |    |
+   |    implicitly returns `()` as its body has no tail or `return` expression
