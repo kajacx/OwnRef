@@ -55,3 +55,15 @@ fn should_convert_own_ref_mut_to_own_ref() {
 
     assert_eq!(taken, "Hello world");
 }
+
+#[test]
+fn can_create_multiple_own_refs() {
+    let text1 = "Hello".to_owned();
+    new_own_ref!(own_ref1, text1);
+
+    let text2 = "world".to_owned();
+    new_own_ref!(own_ref2, text2);
+
+    assert_eq!(own_ref1.take(), "Hello");
+    assert_eq!(own_ref2.take(), "world");
+}
