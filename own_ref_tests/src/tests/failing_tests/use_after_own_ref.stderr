@@ -1,0 +1,13 @@
+error[E0382]: borrow of moved value: `text`
+ --> src/tests/failing_tests/use_after_own_ref.rs:8:5
+  |
+4 |     let text = "Hello".to_owned();
+  |         ---- move occurs because `text` has type `String`, which does not implement the `Copy` trait
+5 |
+6 |     new_own_ref!(owned_ref, text);
+  |     ----------------------------- value moved here
+7 |
+8 |     assert_eq!(text, owned_ref.take());
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ value borrowed here after move
+  |
+  = note: this error originates in the macro `assert_eq` (in Nightly builds, run with -Z macro-backtrace for more info)
