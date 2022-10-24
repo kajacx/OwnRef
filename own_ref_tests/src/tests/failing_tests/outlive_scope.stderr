@@ -1,11 +1,11 @@
-error[E0597]: `_phantom` does not live long enough
+error[E0597]: `_own_ref_phantom_scope` does not live long enough
   --> src/tests/failing_tests/outlive_scope.rs:8:9
    |
 8  |         new_own_ref!(as_own_ref, scoped);
    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ borrowed value does not live long enough
 9  |         external = as_own_ref;
 10 |     } else {
-   |     - `_phantom` dropped here while still borrowed
+   |     - `_own_ref_phantom_scope` dropped here while still borrowed
 ...
 14 |     println!("Oh no, out of scope memory: {}", external.as_str());
    |                                                ----------------- borrow later used here

@@ -1,8 +1,8 @@
-error[E0515]: cannot return value referencing local variable `_phantom`
+error[E0515]: cannot return value referencing local variable `_own_ref_phantom_scope`
   --> src/tests/failing_tests/outlive_function.rs:14:5
    |
 12 |     new_own_ref!(as_own_ref, owned);
-   |     ------------------------------- `_phantom` is borrowed here
+   |     ------------------------------- `_own_ref_phantom_scope` is borrowed here
 13 |
 14 |     as_own_ref
    |     ^^^^^^^^^^ returns a value referencing data owned by the current function
